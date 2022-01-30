@@ -7,31 +7,44 @@ import { Container, H1, H2 } from "./App.styled";
 
 export default class App extends Component {
   state = {
-    contacts: [],
+    contacts: [
+      { id: "id-1", name: "Police", number: "102" },
+      { id: "id-2", name: "Emergency", number: "103" },
+      { id: "id-3", name: "Fire Service", number: "101" },
+      { id: "id-4", name: "Emergency gas service", number: "104" },
+    ],
     filter: "",
   };
   componentDidMount() {
     const storedContacts = JSON.parse(localStorage.getItem("contacts"));
-    storedContacts > 0 && this.setState({ contacts: storedContacts });
+    storedContacts &&
+      storedContacts.length > 0 &&
+      this.setState({ contacts: storedContacts });
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevState) {
     prevState.contacts !== this.state.contacts &&
       localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
   }
 
   addContact = (name, number) => {
+    const { contacts } = this.state;
+
     const contact = {
       id: uuid(),
       name: name,
       number: number,
     };
 
-    this.setState((prevState) => {
-      return {
-        contacts: [...prevState.contacts, contact],
-      };
-    });
+    if (contacts && contacts.find((contact) => name === contact.name)) {
+      alert(`${contact.name} already exist in contacts!`);
+    } else {
+      this.setState((prevState) => {
+        return {
+          contacts: [...prevState.contacts, contact],
+        };
+      });
+    }
   };
 
   removeContact = (id) => {
