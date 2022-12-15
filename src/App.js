@@ -3,7 +3,7 @@ import ContactForm from "./components/ContactsForm";
 import { v4 as uuid } from "uuid";
 import Filter from "./components/Filter";
 import ContactList from "./components/ContactsList";
-import { Container, H1, H2 } from "./App.styled";
+import GlobalStyle from "./GlobalStyles";
 
 export default class App extends Component {
   state = {
@@ -70,12 +70,11 @@ export default class App extends Component {
   render() {
     const { contacts, filter } = this.state;
     return (
-      <Container>
-        <H1>Phonebook</H1>
+      <>
+        <GlobalStyle />
 
         <ContactForm onSubmit={this.addContact} />
 
-        <H2>Contacts</H2>
         {contacts.length > 1 && (
           <Filter value={filter} onChangeFilter={this.changeFilter} />
         )}
@@ -83,7 +82,7 @@ export default class App extends Component {
           onRemoveContact={this.removeContact}
           contacts={this.getFilteredContacts()}
         />
-      </Container>
+      </>
     );
   }
 }

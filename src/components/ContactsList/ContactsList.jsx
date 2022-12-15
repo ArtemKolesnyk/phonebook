@@ -1,11 +1,11 @@
 import React from "react";
-
-import ContactItem from "../ContactItem";
 import PropTypes from "prop-types";
+import ContactItem from "../ContactItem";
+
 
 const ContactList = ({ contacts, onRemoveContact }) => {
   return (
-    <ul>
+    <ul contacts={contacts}>
       {contacts.map((contact) => (
         <ContactItem
           key={contact.id}

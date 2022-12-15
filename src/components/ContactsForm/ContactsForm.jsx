@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Label, Button } from "./ContactsForm.styled";
+import { Label, Button, Input, TitleContact, TitlePhone, Form } from "./ContactsForm.styled";
 
 export default class ContactForm extends Component {
   state = {
@@ -26,11 +26,12 @@ export default class ContactForm extends Component {
   render() {
     const { name, number } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
+        <TitlePhone>Phonebook</TitlePhone>
         <Label>
           Name
           <br />
-          <input
+          <Input
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -41,11 +42,12 @@ export default class ContactForm extends Component {
           />
         </Label>
         <br />
+        <TitleContact>Contacts</TitleContact>
         <Label>
           Number
           <br />
-          <input
-            type="text"
+          <Input
+            type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
@@ -54,9 +56,8 @@ export default class ContactForm extends Component {
             onChange={this.changeHandler}
           />
         </Label>
-        <br />
         <Button type="submit">Add contact</Button>
-      </form>
+      </Form>
     );
   }
 }

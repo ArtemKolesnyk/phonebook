@@ -8,7 +8,7 @@ const ContactItem = ({ contact: { id, name, number }, onRemoveContact }) => {
         {name}: {number}
       </Text>
       <Button onClick={() => onRemoveContact(id)} type="button">
-        Удалить
+        Delate
       </Button>
     </Item>
   );

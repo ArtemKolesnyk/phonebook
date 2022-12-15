@@ -1,19 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Input, Label, Form } from "../ContactsForm/ContactsForm.styled";
 
 const Filter = ({ value, onChangeFilter }) => {
   return (
-    <form>
-      <label>
+    <Form>
+      <Label>
         Find contacts by name
         <br />
-        <input
+        <Input
           type="text"
           value={value}
           onChange={(e) => onChangeFilter(e.target.value)}
-        ></input>
-      </label>
-    </form>
+        />
+      </Label>
+    </Form>
   );
 };
 
